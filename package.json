@@ -1,6 +1,6 @@
 {
   "name": "com.verve-place.yandexgames",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Yandex Games SDK",
   "type": "library",
   "unity": "2020.3",
