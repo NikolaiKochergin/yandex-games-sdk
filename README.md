@@ -9,12 +9,12 @@
 
 ## 🚀 Возможности
 
-- 📦 Инициализация SDK
-- 💰 Покупки и товары (`payments`)
-- 📊 Получение параметров (`getFlags`, `getParams`)
-- 🧠 Работа с `player`, `leaderboard`, `clipboard`
-- 📺 Реклама (`showFullscreenAdv`, `showRewardedVideo`)
-- 🌐 WebGL-расширения (взаимодействие с JavaScript)
+- 📦 Инициализация SDK  
+- 💰 Покупки и товары (`payments`)  
+- 📊 Получение параметров (`getFlags`, `getParams`)  
+- 🧠 Работа с `player`, `leaderboard`, `clipboard`  
+- 📺 Реклама (`showFullscreenAdv`, `showRewardedVideo`)  
+- 🌐 WebGL-расширения (взаимодействие с JavaScript)  
 
 ---
 
@@ -31,14 +31,6 @@
 https://github.com/NikolaiKochergin/yandex-games-sdk.git
 ```
 
-### 💻 Через `manifest.json`
-
-Открой файл `Packages/manifest.json` и добавь:
-
-```json
-"com.nikolai.yandexgames": "https://github.com/NikolaiKochergin/yandex-games-sdk.git"
-```
-
 ---
 
 ## 🕹️ Демо
@@ -50,7 +42,7 @@ https://github.com/NikolaiKochergin/yandex-games-sdk.git
 
 ## 📚 Документация
 
-- [Официальная документация Yandex Games](https://yandex.ru/dev/games/)
+- [Официальная документация Yandex Games](https://yandex.ru/dev/games/)  
 - [Unity WebGL & JS-взаимодействие](https://docs.unity3d.com/Manual/webgl-interactingwithbrowserscripting.html)
 
 ---
