@@ -3,7 +3,7 @@
 Интеграция с [Yandex Games](https://yandex.ru/games) для Unity WebGL.
 
 [![Install via GitHub](https://img.shields.io/badge/Install-via%20GitHub-green?logo=github)](https://github.com/NikolaiKochergin/yandex-games-sdk.git)  
-👉 [Demo](https://yandex.ru/games/app/435941)
+👉 [Demo](https://yandex.ru/games/app/435941?draft=true)
 
 ---
 
@@ -25,7 +25,7 @@ https://github.com/NikolaiKochergin/yandex-games-sdk.git
 ## 🕹️ Демо
 
 🎯 Готовая игра с интеграцией SDK:  
-👉 [Demo](https://yandex.ru/games/app/435941)
+👉 [Demo](https://yandex.ru/games/app/435941?draft=true)
 
 ---
 
