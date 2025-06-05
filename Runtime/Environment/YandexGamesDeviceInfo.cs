@@ -1,7 +1,9 @@
-﻿using UnityEngine.Scripting;
+﻿using System;
+using UnityEngine.Scripting;
 
 namespace VervePlace.YandexGames
 {
+    [Serializable]
     public class YandexGamesDeviceInfo
     {
         [field: Preserve] 
