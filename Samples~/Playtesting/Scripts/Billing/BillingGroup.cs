@@ -12,7 +12,7 @@ namespace VervePlace.YandexGames.Samples
         public void OnGetPurchasedProductsButtonClicked() =>
             Billing.GetPurchasedProducts(OnGetPurchasedProductsSuccessCallback, OnGetProductsErrorCallback);
         
-        private void OnGetProductsCatalogSuccessCallback(ProductsCatalogResponse response) => 
+        private void OnGetProductsCatalogSuccessCallback(CatalogProductsResponse response) => 
             _productsPanel.Show(response);
 
         private void OnGetPurchasedProductsSuccessCallback(PurchasedProductsResponse response) => 

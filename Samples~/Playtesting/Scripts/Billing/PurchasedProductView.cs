@@ -10,9 +10,9 @@ namespace VervePlace.YandexGames.Samples
         [SerializeField] private TMP_Text _purchasedProductInfo;
         [SerializeField] private Button _consumeButton;
         
-        private PurchaseProductResponse _product;
+        private PurchasedProduct _product;
 
-        public void Setup(PurchaseProductResponse product, Action<PurchaseProductResponse> onConsumeButtonClick)
+        public void Setup(PurchasedProduct product, Action<PurchasedProduct> onConsumeButtonClick)
         {
             _product = product;
             _purchasedProductInfo.text = $"<b>{product.productID}</b> {product.developerPayload}\n{product.purchaseToken}\n{product.signature}";

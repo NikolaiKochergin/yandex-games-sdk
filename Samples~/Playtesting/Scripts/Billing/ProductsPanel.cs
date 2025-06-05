@@ -15,7 +15,7 @@ namespace VervePlace.YandexGames.Samples
 
         private readonly List<GameObject> _cachedViews = new();
 
-        public void Show(ProductsCatalogResponse response)
+        public void Show(CatalogProductsResponse response)
         {
             _titleText.text = "Products Catalog";
             _responseText.text = JsonUtility.ToJson(response, true);
@@ -35,7 +35,7 @@ namespace VervePlace.YandexGames.Samples
             _responseText.text = JsonUtility.ToJson(response, true);
             gameObject.SetActive(true);
 
-            foreach (PurchaseProductResponse product in response.products)
+            foreach (PurchasedProduct product in response.products)
             {
                 PurchasedProductView view = Instantiate(_purchasedProductPrefab, _purchasesContainer);
                 view.Setup(product, OnConsumeButtonClick);
@@ -62,13 +62,13 @@ namespace VervePlace.YandexGames.Samples
         private void OnBuyButtonClick(CatalogProduct product) =>
             Billing.PurchaseProduct(product.id, OnPurchaseProductSuccess, ShowProductError, ServerTime.Date.ToString(CultureInfo.InvariantCulture));
 
-        private void OnConsumeButtonClick(PurchaseProductResponse product) => 
+        private void OnConsumeButtonClick(PurchasedProduct product) => 
             Billing.ConsumeProduct(product.purchaseToken, OnConsumeSuccess, ShowProductError);
 
         private void OnConsumeSuccess() => 
             _responseText.text = "<color=green>Purchase consumed successfully</color>";
 
-        private void OnPurchaseProductSuccess(PurchaseProductResponse response) => 
+        private void OnPurchaseProductSuccess(PurchasedProduct response) => 
             _responseText.text = JsonUtility.ToJson(response, true);
         
         private void ShowProductError(string error) => 

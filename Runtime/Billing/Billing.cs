@@ -8,10 +8,10 @@ namespace VervePlace.YandexGames
     public static class Billing
     {
         #region PurchaseProduct
-        private static Action<PurchaseProductResponse> s_onPurchaseProductSuccessCallback;
+        private static Action<PurchasedProduct> s_onPurchaseProductSuccessCallback;
         private static Action<string> s_onPurchaseProductErrorCallback;
         
-        public static void PurchaseProduct(string productId, Action<PurchaseProductResponse> onSuccessCallback = null, Action<string> onErrorCallback = null, string developerPayload = "")
+        public static void PurchaseProduct(string productId, Action<PurchasedProduct> onSuccessCallback = null, Action<string> onErrorCallback = null, string developerPayload = "")
         {
             s_onPurchaseProductSuccessCallback = onSuccessCallback;
             s_onPurchaseProductErrorCallback = onErrorCallback;
@@ -28,7 +28,7 @@ namespace VervePlace.YandexGames
             if (YandexGamesSDK.CallbackLogging)
                 Debug.Log($"{nameof(Billing)}.{nameof(OnPurchaseProductSuccessCallback)} invoked, {nameof(purchaseProductResponseJson)} = {purchaseProductResponseJson}");
 
-            PurchaseProductResponse response = JsonUtility.FromJson<PurchaseProductResponse>(purchaseProductResponseJson);
+            PurchasedProduct response = JsonUtility.FromJson<PurchasedProduct>(purchaseProductResponseJson);
 
             s_onPurchaseProductSuccessCallback?.Invoke(response);
         }
@@ -79,37 +79,37 @@ namespace VervePlace.YandexGames
         }
         #endregion
         
-        #region GetProductsCatalog
-        private static Action<ProductsCatalogResponse> s_onGetProductsCatalogSuccessCallback;
+        #region GetCatalogProducts
+        private static Action<CatalogProductsResponse> s_onGetCatalogProductsSuccessCallback;
         private static Action<string> s_onGetProductsCatalogErrorCallback;
         
-        public static void GetProductsCatalog(Action<ProductsCatalogResponse> onSuccessCallback, Action<string> onErrorCallback = null, CurrencyPictureSize currencyPictureSize = CurrencyPictureSize.medium)
+        public static void GetProductsCatalog(Action<CatalogProductsResponse> onSuccessCallback, Action<string> onErrorCallback = null, CurrencyPictureSize currencyPictureSize = CurrencyPictureSize.medium)
         {
-            s_onGetProductsCatalogSuccessCallback = onSuccessCallback;
+            s_onGetCatalogProductsSuccessCallback = onSuccessCallback;
             s_onGetProductsCatalogErrorCallback = onErrorCallback;
 
-            BillingGetProductsCatalog(OnGetProductsCatalogSuccessCallback, OnGetProductsCatalogErrorCallback, currencyPictureSize.ToString());
+            BillingGetCatalogProducts(OnGetCatalogProductsSuccessCallback, OnGetCatalogProductsErrorCallback, currencyPictureSize.ToString());
         }
 
         [DllImport("__Internal")]
-        private static extern void BillingGetProductsCatalog(Action<string> successCallback, Action<string> errorCallback, string currencyPictureSize);
+        private static extern void BillingGetCatalogProducts(Action<string> successCallback, Action<string> errorCallback, string currencyPictureSize);
 
         [MonoPInvokeCallback(typeof(Action<string>))]
-        private static void OnGetProductsCatalogSuccessCallback(string productsCatalogResponseJson)
+        private static void OnGetCatalogProductsSuccessCallback(string productsCatalogResponseJson)
         {
             if (YandexGamesSDK.CallbackLogging)
-                Debug.Log($"{nameof(Billing)}.{nameof(OnGetProductsCatalogSuccessCallback)} invoked, {nameof(productsCatalogResponseJson)} = {productsCatalogResponseJson}");
+                Debug.Log($"{nameof(Billing)}.{nameof(OnGetCatalogProductsSuccessCallback)} invoked, {nameof(productsCatalogResponseJson)} = {productsCatalogResponseJson}");
 
-            ProductsCatalogResponse response = JsonUtility.FromJson<ProductsCatalogResponse>(productsCatalogResponseJson);
+            CatalogProductsResponse response = JsonUtility.FromJson<CatalogProductsResponse>(productsCatalogResponseJson);
 
-            s_onGetProductsCatalogSuccessCallback?.Invoke(response);
+            s_onGetCatalogProductsSuccessCallback?.Invoke(response);
         }
 
         [MonoPInvokeCallback(typeof(Action<string>))]
-        private static void OnGetProductsCatalogErrorCallback(string errorMessage)
+        private static void OnGetCatalogProductsErrorCallback(string errorMessage)
         {
             if (YandexGamesSDK.CallbackLogging)
-                Debug.Log($"{nameof(Billing)}.{nameof(OnGetProductsCatalogErrorCallback)} invoked, {nameof(errorMessage)} = {errorMessage}");
+                Debug.Log($"{nameof(Billing)}.{nameof(OnGetCatalogProductsErrorCallback)} invoked, {nameof(errorMessage)} = {errorMessage}");
 
             s_onGetProductsCatalogErrorCallback?.Invoke(errorMessage);
         }

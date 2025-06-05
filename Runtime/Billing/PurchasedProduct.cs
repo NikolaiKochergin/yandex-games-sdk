@@ -4,7 +4,7 @@ using UnityEngine.Scripting;
 namespace VervePlace.YandexGames
 {
     [Serializable]
-    public class PurchaseProductResponse
+    public class PurchasedProduct
     {
         [field: Preserve]
         public string productID;

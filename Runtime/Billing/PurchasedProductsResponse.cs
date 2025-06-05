@@ -7,7 +7,7 @@ namespace VervePlace.YandexGames
     public class PurchasedProductsResponse
     {
         [field: Preserve]
-        public PurchaseProductResponse[] products;
+        public PurchasedProduct[] products;
         [field: Preserve]
         public string signature;
     }
