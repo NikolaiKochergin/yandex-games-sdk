@@ -1,3 +1,22 @@
 {
-	"name": "VervePlace.YandexGames"
+    "name": "VervePlace.YandexGames",
+    "rootNamespace": "",
+    "references": [
+        "Unity.Localization"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.localization",
+            "expression": "1.5.4",
+            "define": "UNITY_LOCALIZATION"
+        }
+    ],
+    "noEngineReferences": false
 }
