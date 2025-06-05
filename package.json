@@ -1,6 +1,6 @@
 {
   "name": "com.verve-place.yandexgames",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "Yandex Games SDK",
   "type": "library",
   "unity": "2020.3",
@@ -13,7 +13,7 @@
       "path": "Samples~/Playtesting"
     },
     {
-      "displayName": "WebGL Template",
+      "displayName": "WebGLTemplates",
       "description": "WebGL Template with Yandex Metrika support",
       "path": "Samples~/WebGLTemplates"
     }
