@@ -16,6 +16,8 @@ namespace VervePlace.YandexGames
         public string payingStatus;
         [field: Preserve]
         public UserIDsPreGame[] userIDsPerGame;
+        [field: Preserve] 
+        public string signature;
         
         [Serializable]
         public class UserIDsPreGame

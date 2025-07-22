@@ -10,6 +10,57 @@ namespace VervePlace.YandexGames
 {
     public static class PlayerAccount
     {
+        #region AuthorizationDialogEvents
+
+        private static Action s_onAccountSelectionDialogOpenedCallback;
+        private static Action s_onAccountSelectionDialogClosedCallback;
+        
+        public static event Action AuthorizationDialogOpened
+        {
+            add
+            {
+                AddAccountSelectionOpenDialogListener(OnAccountSelectionDialogOpenedCallback);
+                s_onAccountSelectionDialogOpenedCallback += value;
+            }
+            remove => s_onAccountSelectionDialogOpenedCallback -= value;
+        }
+
+        [DllImport("__Internal")]
+        private static extern void AddAccountSelectionOpenDialogListener(Action accountSelectionDialogOpenedCallback);
+
+        [MonoPInvokeCallback(typeof(Action))]
+        private static void OnAccountSelectionDialogOpenedCallback()
+        {
+            if (YandexGamesSDK.CallbackLogging)
+                Debug.Log($"{nameof(PlayerAccount)}.{nameof(OnAccountSelectionDialogOpenedCallback)} invoked");
+            
+            s_onAccountSelectionDialogOpenedCallback?.Invoke();
+        }
+
+        public static event Action AuthorizationDialogClosed
+        {
+            add
+            {
+                AddAccountSelectionCloseDialogListener(OnAccountSelectionDialogClosedCallback);
+                s_onAccountSelectionDialogClosedCallback += value;
+            }
+            remove => s_onAccountSelectionDialogClosedCallback -= value;
+        }
+
+        [DllImport("__Internal")]
+        private static extern void AddAccountSelectionCloseDialogListener(Action accountSelectionDialogClosedCallback);
+
+        [MonoPInvokeCallback(typeof(Action))]
+        private static void OnAccountSelectionDialogClosedCallback()
+        {
+            if (YandexGamesSDK.CallbackLogging)
+                Debug.Log($"{nameof(PlayerAccount)}.{nameof(OnAccountSelectionDialogClosedCallback)} invoked");
+            
+            s_onAccountSelectionDialogClosedCallback?.Invoke();
+        }
+
+        #endregion
+        
         #region Authorization
         private static Action s_onAuthorizedCallback;
         private static Action s_onAuthorizeSuccessCallback;
@@ -65,7 +116,7 @@ namespace VervePlace.YandexGames
         private static void OnAuthorizedCallback()
         {
             if (YandexGamesSDK.CallbackLogging)
-                Debug.Log($"{nameof(YandexGamesSDK)}.{nameof(OnAuthorizedCallback)} invoked");
+                Debug.Log($"{nameof(PlayerAccount)}.{nameof(OnAuthorizedCallback)} invoked");
             
             s_onAuthorizedCallback?.Invoke();
         }

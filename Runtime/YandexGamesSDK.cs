@@ -32,18 +32,18 @@ namespace VervePlace.YandexGames
             }
         } 
 
-        public static IEnumerator Initialize(bool scopes = true, Action onSuccessCallback = null)
+        public static IEnumerator Initialize(Action onSuccessCallback = null)
         {
             s_OnInitializeSuccessCallback = onSuccessCallback;
 
-            YandexGamesSdkInitialize(scopes, OnInitializeSuccessCallback);
+            YandexGamesSdkInitialize(OnInitializeSuccessCallback);
 
             while (!IsInitialized)
                 yield return null;
         }
 
         [DllImport("__Internal")]
-        private static extern void YandexGamesSdkInitialize(bool scopes, Action successCallback);
+        private static extern void YandexGamesSdkInitialize(Action successCallback);
 
         [MonoPInvokeCallback(typeof(Action))]
         private static void OnInitializeSuccessCallback()

@@ -7,6 +7,32 @@ namespace VervePlace.YandexGames
 {
     public static class Billing
     {
+        #region WarmupBilling
+
+        private static Action s_onWarmupSuccessCallback;
+        
+        public static void Warmup(Action onSuccessCallback = null)
+        {
+            s_onWarmupSuccessCallback = onSuccessCallback;
+            
+            WarmupBilling(OnWarmupSuccessCallback);
+        }
+
+        [DllImport("__Internal")]
+        private static extern void WarmupBilling(Action successCallback);
+
+        [MonoPInvokeCallback(typeof(Action))]
+        private static void OnWarmupSuccessCallback()
+        {
+            if (YandexGamesSDK.CallbackLogging)
+                Debug.Log($"{nameof(Billing)}.{nameof(OnWarmupSuccessCallback)} invoked");
+            
+            s_onWarmupSuccessCallback?.Invoke();
+        }
+
+        #endregion
+        
+        
         #region PurchaseProduct
         private static Action<PurchasedProduct> s_onPurchaseProductSuccessCallback;
         private static Action<string> s_onPurchaseProductErrorCallback;

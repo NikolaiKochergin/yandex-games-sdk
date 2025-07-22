@@ -8,8 +8,12 @@ namespace VervePlace.YandexGames.Samples
     {
         [SerializeField] private TMP_Text _authorizationStatusText;
         
-        private void Awake() => 
+        private void Awake()
+        {
             PlayerAccount.Authorized += OnAuthorized;
+            PlayerAccount.AuthorizationDialogOpened += OnAuthorizationDialogOpened;
+            PlayerAccount.AuthorizationDialogClosed += OnAuthorizationDialogClosed;
+        }
 
         private IEnumerator Start()
         {
@@ -17,14 +21,24 @@ namespace VervePlace.YandexGames.Samples
             OnAuthorized();
         }
 
-        private void OnDestroy() => 
+        private void OnDestroy()
+        {
             PlayerAccount.Authorized -= OnAuthorized;
-        
+            PlayerAccount.AuthorizationDialogOpened -= OnAuthorizationDialogOpened;
+            PlayerAccount.AuthorizationDialogClosed -= OnAuthorizationDialogClosed;
+        }
+
         public void OnAuthorizeButtonClicked() => PlayerAccount.Authorize();
-        
+
         private void OnAuthorized() =>
             _authorizationStatusText.text = PlayerAccount.IsAuthorized
                 ? "<color=\"green\">Authorized"
                 : "<color=\"red\">Not authorized";
+
+        private void OnAuthorizationDialogOpened() => 
+            _authorizationStatusText.text = "<color=\"orange\">Authorization dialog opened";
+
+        private void OnAuthorizationDialogClosed() => 
+            _authorizationStatusText.text = "<color=\"orange\">Authorization dialog closed";
     }
 }

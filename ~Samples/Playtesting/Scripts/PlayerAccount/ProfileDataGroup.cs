@@ -27,6 +27,7 @@ namespace VervePlace.YandexGames.Samples
             builder.Append("\n<color=\"green\">User IDs Per Game </color>" + "\n");
             foreach (PlayerAccountProfileDataResponse.UserIDsPreGame id in response.userIDsPerGame) 
                 builder.Append("<color=\"orange\">App ID: </color>" + id.appID + "<color=\"orange\"> User ID: </color>" + id.userID + "\n");
+            builder.Append("<color=\"green\">Signature: </color>" + response.signature + "\n");
             
             _profileInfoText.text = builder.ToString();
         }
